@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax请求示例</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+  <button id="getDataButton">获取数据</button>
+  <div id="responseContainer"></div>
+
+  <script>
+    // 使用jQuery的方式来处理Ajax请求
+    $(document).ready(function() {
+      $("#getDataButton").click(function() {
+        // 发送Ajax请求
+        $.ajax({
+          url: "https://httpbin.org/get",
+          method: "GET",
+          success: function(data) {
+            // 请求成功时更新页面上的响应容器
+            $("#responseContainer").html("<pre>" + JSON.stringify(data, null, 2) + "</pre>");
+          },
+          error: function(error) {
+            // 请求失败时更新页面上的响应容器
+            $("#responseContainer").html("<p>发生错误：" + error.statusText + "</p>");
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
